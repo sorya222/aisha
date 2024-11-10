@@ -1,14 +1,14 @@
-// دالة تحقق من الاسم وكلمة السر
-function validateLogin() {
-    const studentName = document.getElementById('studentName').value;
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // الحصول على البيانات المدخلة من قبل المستخدم
+    const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    // تحقق من إذا كانت بيانات التسجيل صحيحة
-    if (studentName === localStorage.getItem('studentName') && password === localStorage.getItem('password')) {
-        // إذا كانت صحيحة، الانتقال إلى الصفحة الرئيسية
-        window.location.href = 'index.html';
-    } else {
-        alert('الاسم أو كلمة السر غير صحيحة');
-        return false; // لمنع إرسال النموذج إذا كانت البيانات غير صحيحة
-    }
-}
+    // تخزين البيانات في localStorage
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
+    // إعادة التوجيه إلى صفحة أخرى بعد التسجيل الناجح
+    window.location.href = 'home.html';
+});
