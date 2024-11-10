@@ -2,6 +2,7 @@
 function saveUserData(username, password) {
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
+    console.log('تم حفظ بيانات المستخدم في localStorage');
 }
 
 // دالة لتسجيل الدخول
@@ -15,6 +16,10 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const storedUsername = localStorage.getItem('username');
     const storedPassword = localStorage.getItem('password');
 
+    // التحقق من البيانات المخزنة
+    console.log('بيانات الدخول المدخلة: ', username, password);
+    console.log('البيانات المخزنة في localStorage: ', storedUsername, storedPassword);
+
     // التحقق من أن البيانات المدخلة تتطابق مع البيانات المخزنة
     if (username === storedUsername && password === storedPassword) {
         // تحويل المستخدم إلى الصفحة الرئيسية
@@ -22,7 +27,6 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     } else {
         // عرض رسالة الخطأ إذا كانت البيانات غير صحيحة
         document.getElementById('errorMessage').style.display = 'block';
-        document.getElementById('errorMessage').innerText = 'اسم المستخدم أو كلمة السر غير صحيحة';
     }
 });
 
@@ -42,13 +46,3 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول بعد التسجيل
     window.location.href = 'login.html';
 });
-
-// دالة لتسجيل الخروج
-function logout() {
-    // إزالة بيانات المستخدم عند تسجيل الخروج
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
-
-    // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول
-    window.location.href = 'login.html';
-}
