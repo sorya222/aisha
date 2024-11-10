@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>تسجيل الدخول إلى مؤسسة عائشة بخيت التعليمية الخاصة</h1>
+    </header>
+    <main>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <label for="studentName">الاسم:</label>
+            <input type="text" id="studentName" name="studentName" required>
+
+            <label for="password">كلمة السر:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">دخول</button>
+        </form>
+    </main>
+
+    <script src="login.js"></script>
+</body>
+</html>

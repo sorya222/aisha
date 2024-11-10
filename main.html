@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق المؤسسة التعليمية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>تطبيق المؤسسة التعليمية</h1>
+    </header>
+    <nav>
+        <button onclick="showSection('studySchedule')">جدول المذاكرة</button>
+        <button onclick="showSection('educationalVideos')">الفيديوهات التعليمية</button>
+        <button onclick="showSection('exams')">الامتحانات الدورية</button>
+    </nav>
+    <main>
+        <section id="studySchedule" style="display: none;">
+            <h2>جدول المذاكرة</h2>
+            <p>هنا سيتم عرض جدول المذاكرة.</p>
+        </section>
+        <section id="educationalVideos" style="display: none;">
+            <h2>الفيديوهات التعليمية</h2>
+            <p>هنا سيتم عرض الفيديوهات التعليمية.</p>
+        </section>
+        <section id="exams" style="display: none;">
+            <h2>الامتحانات الدورية</h2>
+            <p>هنا سيتم عرض الامتحانات الدورية.</p>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
