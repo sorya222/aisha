@@ -5,31 +5,6 @@ function saveUserData(username, password) {
     console.log('تم حفظ بيانات المستخدم في localStorage');
 }
 
-// دالة لتسجيل الدخول
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const username = document.getElementById('usernameLogin').value;
-    const password = document.getElementById('passwordLogin').value;
-
-    // جلب البيانات المخزنة من localStorage
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password');
-
-    // التحقق من البيانات المخزنة
-    console.log('بيانات الدخول المدخلة: ', username, password);
-    console.log('البيانات المخزنة في localStorage: ', storedUsername, storedPassword);
-
-    // التحقق من أن البيانات المدخلة تتطابق مع البيانات المخزنة
-    if (username === storedUsername && password === storedPassword) {
-        // تحويل المستخدم إلى الصفحة الرئيسية
-        window.location.href = 'home.html';
-    } else {
-        // عرض رسالة الخطأ إذا كانت البيانات غير صحيحة
-        document.getElementById('errorMessage').style.display = 'block';
-    }
-});
-
 // دالة لتسجيل مستخدم جديد
 document.getElementById('registerForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -41,8 +16,19 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     saveUserData(newUsername, newPassword);
 
     // إظهار رسالة تأكيد للمستخدم
-    alert('تم التسجيل بنجاح! يمكنك الآن تسجيل الدخول.');
+    alert('تم التسجيل بنجاح! سيتم نقلك إلى التطبيق.');
 
-    // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول بعد التسجيل
-    window.location.href = 'login.html';
+    // إعادة توجيه المستخدم إلى الصفحة الرئيسية للتطبيق بعد التسجيل
+    window.location.href = 'home.html';
 });
+
+// التحقق من أن المستخدم قد سجل الدخول
+window.onload = function() {
+    const storedUsername = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+
+    if (!storedUsername || !storedPassword) {
+        // إذا كانت بيانات المستخدم غير موجودة، يتم إعادة توجيه المستخدم إلى صفحة التسجيل
+        window.location.href = 'register.html';
+    }
+};
