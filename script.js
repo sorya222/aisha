@@ -1,34 +1,52 @@
-// دالة لحفظ بيانات المستخدم عند التسجيل
-function saveUserData(username, password) {
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
-    console.log('تم حفظ بيانات المستخدم في localStorage');
+// تخزين المستخدم في localStorage عند التسجيل
+function saveUser(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const studentClass = document.getElementById('class').value;
+  const specialization = document.getElementById('specialization').value;
+  const parentPhone = document.getElementById('parent-phone').value;
+  const password = document.getElementById('password').value;
+
+  // تخزين بيانات المستخدم في localStorage
+  const user = {
+    name,
+    studentClass,
+    specialization,
+    parentPhone,
+    password,
+  };
+  localStorage.setItem('user', JSON.stringify(user));
+
+  // الانتقال إلى الصفحة الرئيسية
+  showApp();
 }
 
-// دالة لتسجيل مستخدم جديد
-document.getElementById('registerForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+// إظهار التطبيق
+function showApp() {
+  const registerForm = document.getElementById('register-form');
+  const appContent = document.getElementById('app-content');
+  
+  registerForm.style.display = 'none';
+  appContent.style.display = 'block';
+}
 
-    const newUsername = document.getElementById('username').value;
-    const newPassword = document.getElementById('password').value;
+// التحقق من تسجيل الدخول
+function checkLogin() {
+  const user = localStorage.getItem('user');
+  if (user) {
+    showApp();
+  } else {
+    // في حالة عدم وجود بيانات المستخدم في localStorage، إظهار صفحة التسجيل
+    document.getElementById('register-form').style.display = 'block';
+  }
+}
 
-    // حفظ بيانات المستخدم
-    saveUserData(newUsername, newPassword);
+// تسجيل الخروج
+function logout() {
+  localStorage.removeItem('user');
+  location.reload();
+}
 
-    // إظهار رسالة تأكيد للمستخدم
-    alert('تم التسجيل بنجاح! سيتم نقلك إلى التطبيق.');
-
-    // إعادة توجيه المستخدم إلى الصفحة الرئيسية للتطبيق بعد التسجيل
-    window.location.href = 'home.html';
-});
-
-// التحقق من أن المستخدم قد سجل الدخول
-window.onload = function() {
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password');
-
-    if (!storedUsername || !storedPassword) {
-        // إذا كانت بيانات المستخدم غير موجودة، يتم إعادة توجيه المستخدم إلى صفحة التسجيل
-        window.location.href = 'register.html';
-    }
-};
+// التحقق عند تحميل الصفحة
+window.onload = checkLogin;
